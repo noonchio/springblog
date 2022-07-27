@@ -17,7 +17,7 @@ public class PostController {
     @GetMapping("/posts/{number}")
     @ResponseBody
     public String postId(@PathVariable int number) {
-        return "view an individual post";
+        return "view an individual post" + number;
     }
 
     @GetMapping("/posts/create")
@@ -26,7 +26,7 @@ public class PostController {
         return "view the form for creating a post";
     }
 
-    @PostMapping(path = "/posts/create")
+    @PostMapping( "/posts/create")
     @ResponseBody
     public String newPost( ) {
         return "create a new post";

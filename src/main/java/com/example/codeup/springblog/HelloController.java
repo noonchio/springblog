@@ -23,7 +23,7 @@ public class HelloController {
 
     @GetMapping("/increment/{number}")
     @ResponseBody
-    public String increment(@PathVariable int number) {
+    public String increment(@PathVariable int number ) {
         return number + " plus one = " +(number + 1) + "!";
     }
 }
