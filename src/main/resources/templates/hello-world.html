@@ -5,10 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-
+<nav th:replace="partials/partials.html :: nav"></nav>
 <h1>Hello <span th:text="${name}"></span> world</h1>
 
+
 <h3 th:text="${name}">Fred</h3>
+<footer th:replace="partials/partials.html :: footer"></footer>
 
 
 </body>
