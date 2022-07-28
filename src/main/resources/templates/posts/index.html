@@ -6,12 +6,19 @@
 </head>
 <body>
 <h1>Here are All the Post</h1>
-<ul>
-    <li   th:each="post : ${posts}">
-        <p th:text="${post.title} + ' title ' + ${post.body} + ' body'"></p>
-    </li>
+<!--<ul>-->
+<!--    <li   th:each="post : ${posts}">-->
+<!--        <p th:text="${post.title} + ' title ' + ${post.body} + ' body'"></p>-->
+<!--    </li>-->
 
-</ul>
+<!--</ul>-->
+
+<main>
+    <article th:each="post : ${posts}">
+        <h3 th:text="${post.title}"></h3>
+        <p th:text="${post.body}"></p>
+    </article>
+</main>
 
 </body>
 </html>
