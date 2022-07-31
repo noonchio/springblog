@@ -35,9 +35,8 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String postId(@PathVariable long id, Model model) {
-        Post post = new Post(1,"HI", "Hello how you doin!");
-
-        model.addAttribute("post", post);
+      Post p = postDao.findById(id).get();
+        model.addAttribute("p", p);
         return "posts/show";
     }
 
@@ -47,9 +46,8 @@ public class PostController {
         return "posts/create";
     }
 
-    @PostMapping( "/posts/create/{title}/{body}")
-
-    public String newPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, Model vModel ) {
+    @PostMapping( "/posts/create")
+    public String newPost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, Model vModel) {
         Post post = new Post(title, body);
        postDao.save(post);
         return "redirect:/posts";
@@ -69,4 +67,11 @@ public class PostController {
 ////        postDao.save(post);
 //        return "redirect:/posts";
 //    }
+
+    // delete a record with JPA
+    @GetMapping("/post/delete/{id}")
+    public String deletePost(@PathVariable long id) {
+        postDao.deleteById(id);
+        return "redirect:/posts";
+    }
 }
