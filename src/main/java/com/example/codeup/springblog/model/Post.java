@@ -15,6 +15,18 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+   @ManyToOne
+    @JoinColumn (name = "user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Post() {
 
     }
@@ -63,4 +75,6 @@ public class Post {
         this.title = title;
         this.body = body;
     }
+
+
 }
