@@ -3,6 +3,8 @@ package com.example.codeup.springblog.model;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -25,6 +27,18 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<PostImage> images = new ArrayList<>();
+
+
+    public List<PostImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<PostImage> images) {
+        this.images = images;
     }
 
     public Post() {

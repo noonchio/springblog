@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--<article th:each="post : ${p}">-->
+<!--    <h3 th:text="${post.title}"></h3>-->
+<!--&lt;!&ndash;    <img src="${post.images}" alt="cat">&ndash;&gt;-->
+<!--    <p th:text="${post.body}"></p>-->
+<!--    <a th:href="@{/posts/{id}(id=${post.id})}"> link-->
+
+<!--    </a>-->
+<!--</article>-->
+
+<!--<ul>-->
+<!--    <li   th:each="post : ${posts}">-->
+<!--        <h3 th:text="${post.post.title}"></h3>-->
+<!--        <img th:src="${post.url}"/>-->
+<!--    </li>-->
+
+<!--</ul>-->
+
+<!--<th:each="product,iterStat: ${products}" th:if="${iterStat.index} <3">-->
+</tr>
+<tr th:each="prod,iterStat : ${posts}" th:if="${iterStat.index} <1">
+    <td th:text="${prod.post.title}"></td>
+
+</tr>
+
+<ul>
+    <li   th:each="post : ${posts}">
+        <img th:src="${post.url}"/>
+    </li>
+
+</ul>
+
+
+<!--</tr>-->
+<!--<tr th:each="prod,iterStat : ${prods}" th:class="${iterStat.odd}? 'odd'">-->
+<!--    <td th:text="${prod.name}">Onions</td>-->
+<!--    <td th:text="${prod.price}">2.41</td>-->
+<!--    <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>-->
+<!--</tr>-->
+</body>
+</html>

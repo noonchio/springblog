@@ -1,7 +1,9 @@
 package com.example.codeup.springblog.controllers;
 
 import com.example.codeup.springblog.model.Post;
+import com.example.codeup.springblog.model.PostImage;
 import com.example.codeup.springblog.model.User;
+import com.example.codeup.springblog.reposotories.PostImageRepository;
 import com.example.codeup.springblog.reposotories.PostRepository;
 import com.example.codeup.springblog.reposotories.UserRepository;
 import org.springframework.stereotype.Controller;
@@ -22,9 +24,12 @@ public class PostController {
 
  private   UserRepository userDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+ private PostImageRepository postImageDao;
+
+    public PostController(PostRepository postDao, UserRepository userDao, PostImageRepository postImageDao) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.postImageDao = postImageDao;
     }
 
     @GetMapping("/posts")
@@ -72,4 +77,16 @@ public class PostController {
 //       save works as update and create
         return "redirect:/posts";
     }
+
+    @GetMapping("/posts/cats")
+    public String postImage(Model vModel) {
+        List<PostImage> posttList = postImageDao.findAll();
+        // pass posts to view
+        vModel.addAttribute("posts", posttList);
+        return "posts/showcats";
+    }
+
+
+
+
 }
