@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/posts/{id}/edit(id=${post.id})}"  method="post" th:object="${post}">
+    <label>Title</label><br>
+    <input type="text" id="title" name="title" input th:field="*{title}"><br>
+    <label>Post Body</label><br>
+    <textarea id="body" name="body" rows="4" cols="50" input th:field="*{body}"></textarea><br><br>
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

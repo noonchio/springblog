@@ -12,6 +12,8 @@
     <p th:text="${p.body}"></p>
     <p th:text="${p.user.email}"></p>
 
+  <button><a th:href="@{'/posts/'+ ${p.id} +'/edit'}">Edit</a></button>
+    <button><a th:href="@{/posts/delete/{id}(id=${p.id})}">Delete</a></button>
 
 
 
