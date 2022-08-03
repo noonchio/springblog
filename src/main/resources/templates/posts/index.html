@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head('Post Index')"></head>
 <body>
-<h1>Here are All the Post</h1>
+<nav th:replace="partials/partials.html :: nav"></nav>
+<h1 style="text-align: center">Here are All the Post</h1>
 <!--<ul>-->
 <!--    <li   th:each="post : ${posts}">-->
 <!--        <p th:text="${post.title} + ' title ' + ${post.body} + ' body'"></p>-->
@@ -13,14 +11,24 @@
 
 <!--</ul>-->
 
-<main>
-    <article th:each="post : ${posts}">
-        <h3 th:text="${post.title}"></h3>
-        <p th:text="${post.body}"></p>
-        <a th:href="@{/posts/{id}(id=${post.id})}"> link
-        </a>
-    </article>
-</main>
+<!--<main>-->
+<!--    <article th:each="post : ${posts}">-->
+<!--        <h3 th:text="${post.title}"></h3>-->
+<!--        <p th:text="${post.body}"></p>-->
+<!--       <button> <a th:href="@{/posts/{id}(id=${post.id})}">Update Post</a></button>-->
+<!--    </article>-->
+<!--</main>-->
 
+<div class="card" th:each="post : ${posts}">
+    <h5 class="card-header" th:text="${post.title}"></h5>
+    <div class="card-body">
+<!--        <h5 class="card-title">Special title treatment</h5>-->
+        <p class="card-text" th:text="${post.body}"></p>
+        <div style="text-align: end">
+        <a th:href="@{/posts/{id}(id=${post.id})}">Go somewhere</a>
+        </div>
+    </div>
+</div>
+<th:block th:replace="partials/partials.html :: scripts"></th:block>
 </body>
 </html>

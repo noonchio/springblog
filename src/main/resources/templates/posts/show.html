@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head('Post Show')"></head>
 <body>
+<nav th:replace="partials/partials.html :: nav"></nav>
 
-<h1>Here are All the Posts</h1>
-<ul>
-    <li th:text="${p.title}"></li>
-    <p th:text="${p.body}"></p>
-    <p th:text="${p.user.email}"></p>
+<h1 ></h1>
 
-  <button><a th:href="@{'/posts/'+ ${p.id} +'/edit'}">Edit</a></button>
-    <button><a th:href="@{/posts/delete/{id}(id=${p.id})}">Delete</a></button>
+<div class="card">
+    <div th:text="${p.title}" style="text-align: center" class="card-header">
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p th:text="${p.body}"></p>
+            <p th:text="${p.user.email}"></p>
+        </blockquote>
+        <div style="text-align: end">
+        <button><a th:href="@{'/posts/'+ ${p.id} +'/edit'}">Edit</a></button>
+        <button><a th:href="@{/posts/delete/{id}(id=${p.id})}">Delete</a></button>
+        </div>
+    </div>
+</div>
 
 
 
 
-</ul>
 
+
+
+<th:block th:replace="partials/partials.html :: scripts"></th:block>
 </body>
 </html>

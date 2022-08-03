@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/partials.html :: head('Cats Image')"></head>
+<style>
+    .card-body {
+        padding: 0.5rem;
+    }
+</style>
 <body>
+<nav th:replace="partials/partials.html :: nav"></nav>
 
 <!--<article th:each="post : ${p}">-->
 <!--    <h3 th:text="${post.title}"></h3>-->
@@ -24,18 +27,32 @@
 <!--</ul>-->
 
 <!--<th:each="product,iterStat: ${products}" th:if="${iterStat.index} <3">-->
-</tr>
+
+
 <tr th:each="prod,iterStat : ${posts}" th:if="${iterStat.index} <1">
     <td th:text="${prod.post.title}"></td>
-
 </tr>
 
-<ul>
-    <li   th:each="post : ${posts}">
-        <img th:src="${post.url}"/>
-    </li>
 
-</ul>
+
+
+
+<!--<tr>-->
+<!--    <td   th:each="post : ${posts}">-->
+<!--        <img th:src="${post.url}"/>-->
+<!--    </td>-->
+
+<!--</tr>-->
+<div class="container mt-10" >
+    <div class="card-deck">
+<div  th:each="post : ${posts}" class="card" style="width: 18rem;">
+    <img th:src="${post.url}"/>
+    <div class="card-body">
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+</div>
+    </div>
+</div>
 
 
 <!--</tr>-->
@@ -44,5 +61,6 @@
 <!--    <td th:text="${prod.price}">2.41</td>-->
 <!--    <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>-->
 <!--</tr>-->
+<th:block th:replace="partials/partials.html :: scripts"></th:block>
 </body>
 </html>
