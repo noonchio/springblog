@@ -6,11 +6,14 @@ import com.example.codeup.springblog.model.User;
 import com.example.codeup.springblog.reposotories.PostImageRepository;
 import com.example.codeup.springblog.reposotories.PostRepository;
 import com.example.codeup.springblog.reposotories.UserRepository;
-import com.example.codeup.springblog.services.EmailService;
+//import com.example.codeup.springblog.services.EmailService;
+import com.example.codeup.springblog.services.Example;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,13 +29,14 @@ public class PostController {
  private   UserRepository userDao;
 
  private PostImageRepository postImageDao;
- private final EmailService emailService;
+// private final EmailService emailService;
+ private final Example email;
 
-    public PostController(PostRepository postDao, UserRepository userDao, PostImageRepository postImageDao, EmailService emailService) {
+    public PostController(PostRepository postDao, UserRepository userDao, PostImageRepository postImageDao, Example email) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postImageDao = postImageDao;
-        this.emailService = emailService;
+        this.email = email;
     }
 
     @GetMapping("/posts")
@@ -40,6 +44,7 @@ public class PostController {
         List<Post> posttList = postDao.findAll();
         // pass posts to view
         vModel.addAttribute("posts", posttList);
+
         return "posts/index";
     }
 
@@ -65,7 +70,7 @@ public class PostController {
 //        return "redirect:/posts";
 //    }
 //    delete a record with JPA
-    @GetMapping("/posts/delete/{id}")
+    @PostMapping("/posts/delete/{id}")
     public String deletePost(@PathVariable long id, Model model) {
         Post post = postDao.findById(id).get();
         postDao.delete(post);
@@ -73,13 +78,12 @@ public class PostController {
     }
 
     @PostMapping( "/posts/create")
-    public String newPostandUser(@ModelAttribute Post post) {
-        User user = userDao.findById(1L).get();
-        post.setUser(user);
-        postDao.save(post);
+    public String newPostAndUser(@ModelAttribute Post newPost) throws IOException {
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        newPost.setUser(principal);
+        postDao.save(newPost);
+//        email.prepareAndSendReal(post); this one sends the email
 
-//       save works as update and create
-        emailService.prepareAndSend(post, "You creatred a new post" );
         return "redirect:/posts";
     }
 

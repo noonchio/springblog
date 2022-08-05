@@ -20,6 +20,49 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts = new ArrayList<>();
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "followed_users",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "follow_id")})
+    private List<User> users = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "followed_users",
+            joinColumns = {@JoinColumn(name = "follow_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    private List<User> followers = new ArrayList<>();
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public User(long id, String username, String email, String password, List<Post> posts, List<User> users, List<User> followers) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.posts = posts;
+        this.users = users;
+        this.followers = followers;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(List<User> followers) {
+        this.followers = followers;
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
 
     public List<Post> getPosts() {
@@ -78,4 +121,6 @@ public class User {
         username = copy.username;
         password = copy.password;
     }
+
+
 }

@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="partials/partials.html :: head('Post Index')"></head>
 <body>
 <nav th:replace="partials/partials.html :: nav"></nav>
 <h1 style="text-align: center">Here are All the Post</h1>
+
+<div style="text-align: end"  sec:authorize="isAuthenticated()">
+<tr th:each="prod,iterStat : ${posts}" th:if="${iterStat.index} <1">
+    <td>
+ <button><a th:href="@{/posts/user-profile/{id}(id=${prod.id})}">Your Profile Page</a></button>
+    </td>
+</tr>
+</div>
+
+
 <!--<ul>-->
 <!--    <li   th:each="post : ${posts}">-->
 <!--        <p th:text="${post.title} + ' title ' + ${post.body} + ' body'"></p>-->

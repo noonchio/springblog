@@ -1,7 +1,5 @@
 package com.example.codeup.springblog.model;
 
-import org.springframework.web.bind.annotation.PathVariable;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +86,10 @@ public class Post {
     public Post(String title, String body) {
         this.title = title;
         this.body = body;
+    }
+
+    public void findByTitle(String title){
+        this.title = title;
     }
 
 
