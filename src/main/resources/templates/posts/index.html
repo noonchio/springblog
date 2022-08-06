@@ -9,7 +9,7 @@
 <div style="text-align: end"  sec:authorize="isAuthenticated()">
 <tr th:each="prod,iterStat : ${posts}" th:if="${iterStat.index} <1">
     <td>
- <button><a th:href="@{/posts/user-profile/{id}(id=${prod.id})}">Your Profile Page</a></button>
+ <button  type="button" class="btn btn btn-dark btn-sm"><a th:href="@{/posts/user-profile/{id}(id=${prod.user.id})}">Your Profile Page</a></button>
     </td>
 </tr>
 </div>

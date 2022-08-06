@@ -3,7 +3,7 @@
 <head th:replace="partials/partials.html :: head('Post Create')"></head>
 <body>
 <nav th:replace="partials/partials.html :: nav"></nav>
-<div th:text="${u.username}" style="text-align: center" class="card-header"></div>
+<div th:text="${u.username}" style="text-align: center" class="card-header"><h1></h1></div>
 
 
 <!--        <div class="card" th:each="follower : ${u.followers}">-->
@@ -12,14 +12,25 @@
 <!--            </div>-->
 <!--        </div>-->
 
-    <div class="card" th:each="post : ${u.posts}">
-        <div class="card-body">
-<!--            <img class="card-img-top" src="https://media.istockphoto.com/vectors/pixel-art-8bit-cute-kitten-domestic-pet-isolated-vector-illustration-vector-id1269703605?k=20&m=1269703605&s=170667a&w=0&h=63NYuvpjZJjpmf98wxCTtXfB8sXcp2WFfJryoWhqwsU=" class="img-fluid" alt="Card image cap">-->
-            <h5 class="card-title" th:text="${post.title}"></h5>
-            <p class="card-text" th:text="${post.body}"></p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+<!--    <div class="card" th:each="post : ${u.posts}">-->
+<!--        <div class="card-body">-->
+<!--&lt;!&ndash;            <img class="card-img-top" src="https://media.istockphoto.com/vectors/pixel-art-8bit-cute-kitten-domestic-pet-isolated-vector-illustration-vector-id1269703605?k=20&m=1269703605&s=170667a&w=0&h=63NYuvpjZJjpmf98wxCTtXfB8sXcp2WFfJryoWhqwsU=" class="img-fluid" alt="Card image cap">&ndash;&gt;-->
+<!--            <h5 class="card-title" th:text="${post.title}"></h5>-->
+<!--            <p class="card-text" th:text="${post.body}"></p>-->
+<!--            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<div class="card" th:each="post : ${u.posts}">
+    <h5 class="card-header" th:text="${post.title}"></h5>
+    <div class="card-body">
+        <!--        <h5 class="card-title">Special title treatment</h5>-->
+        <p class="card-text" th:text="${post.body}"></p>
+        <div style="text-align: end">
+<!--            <a th:href="@{/posts/{id}(id=${post.id})}">Go somewhere</a>-->
         </div>
     </div>
+</div>
 
     <th:block th:replace="partials/partials.html :: scripts"></th:block>
 </body>
