@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
     //    @Value()
 
-     static String SENDGRID_API_KEY ="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";
+     static String SENDGRID_API_KEY ="";
 
 //        public static void main(String[] args) throws IOException {
 public void prepareAndSendReal(Post post) throws IOException {
